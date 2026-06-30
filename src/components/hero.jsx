@@ -1,32 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CardGrid from './CardGrid'; 
 
-function Hero(props) {
+export default function Hero() {
+  const [clickCount, setClickCount] = useState(7);
+
   return (
-    <main className="flex flex-col items-center justify-center text-center pt-20 px-4">
-      <div className="bg-emerald-50/60 p-12 rounded-2xl border border-emerald-100 max-w-2xl shadow-sm">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-          {props.title}
+    <section className="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      {/* Hero Welcome Card */}
+      <div className="max-w-3xl mx-auto bg-emerald-50/50 border border-emerald-100 rounded-2xl p-8 text-center shadow-sm mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Selamat Datang di BrandKu
         </h1>
-        
-        <p className="text-gray-600 text-lg mb-8 max-w-md mx-auto">
-          {props.description}
+        <p className="text-gray-600 max-w-xl mx-auto mb-8 text-sm sm:text-base">
+          Solusi digital terbaik untuk mengelola dan mengembangkan tugas akademik 
+          serta bisnismu dengan lebih mudah.
         </p>
         
         <button 
-          onClick={props.onButtonClick}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3.5 rounded-xl transition-all transform hover:scale-105 shadow-md mb-4"
+          onClick={() => setClickCount(clickCount + 1)}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors shadow-md animate-pulse-subtle"
         >
-          {props.buttonText}
+          Mulai Sekarang
         </button>
-
-        <div className="mt-4">
-          <span className="bg-white px-4 py-2 rounded-full text-sm font-mono text-gray-600 shadow-sm border border-gray-100">
-            Total Klik: <span className="text-blue-600 font-bold">{props.countValue}</span>
+        
+        <div className="mt-6">
+          <span className="inline-block bg-white border border-gray-200 text-xs text-gray-500 px-4 py-1.5 rounded-full shadow-sm font-mono">
+            Total Klik: {clickCount}
           </span>
         </div>
       </div>
-    </main>
+
+      {/* Menampilkan Component CardGrid secara terpisah */}
+      <CardGrid />
+    </section>
   );
 }
-
-export default Hero;
